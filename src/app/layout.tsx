@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { GeistSans as geist } from 'geist/font/sans';
 import '../styles/global.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={geist.className}>{children}</body>
+      <body className={geist.className}>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='dark'
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
