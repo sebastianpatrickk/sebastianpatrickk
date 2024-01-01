@@ -3,6 +3,25 @@ import Link from "next/link";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProjectCard from "@/components/ProjectCard";
 
+const PROJECTS = [
+  {
+    name: "Skateshop",
+    description:
+      "An open source e-commerce skateshop build with everything new in Next.js 13.",
+    tech: "TypeScript",
+    stars: 6,
+    href: "https://skateshop.sadmn.com",
+  },
+  {
+    name: "sebthepatrick",
+    description:
+      "An open source e-commerce skateshop build with everything new in Next.js 13.",
+    tech: "TypeScript",
+    stars: 1,
+    href: "https://skateshop.sadmn.com",
+  },
+] as const;
+
 const Home = () => {
   return (
     <MaxWidthWrapper>
@@ -38,10 +57,16 @@ const Home = () => {
           <h3 className="text-xl font-bold">Projects</h3>
         </Link>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <ProjectCard href="#" />
-          <ProjectCard href="#" />
-          <ProjectCard href="#" />
-          <ProjectCard href="#" />
+          {PROJECTS.map((project) => (
+            <ProjectCard
+              key={project.name}
+              name={project.name}
+              description={project.description}
+              tech={project.tech}
+              stars={project.stars}
+              href={project.href}
+            />
+          ))}
         </div>
       </section>
     </MaxWidthWrapper>
