@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { GeistSans as geist } from 'geist/font/sans';
 import '../styles/global.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { cn } from '@/lib/utils';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,14 +17,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={geist.className}>
+      <body
+        className={cn(
+          'min-h-screen bg-backgrounda antialiased',
+          geist.className
+        )}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className='relative flex min-h-screen flex-col'>
+            <Header />
+            <main className='flex-1'>{children}</main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
